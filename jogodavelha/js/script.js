@@ -16,7 +16,7 @@ function marcar(casa){
             document.getElementById(casa).src = "imagens/"+vez+".png";
             rodadas++;
 
-            if(rodadas == 9){
+            if(rodadas == 9 && !verifica_ganhador()){
 
               document.getElementById('feedbacks').innerHTML = "Empate!";
               status = "finalizado";
