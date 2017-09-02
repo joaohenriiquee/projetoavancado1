@@ -2,8 +2,11 @@ var tabuleiro = [];
 var jogadores = ["PHP","JAVA"];
 var vez = jogadores[0];
 var status = "jogando";
+var rodadas = 0;
 
 function marcar(casa){
+
+  console.log(rodadas);
 
     if(status != "finalizado"){
         var imagem = document.getElementById(casa);
@@ -11,8 +14,14 @@ function marcar(casa){
             imagem.classList.remove(casa);
             imagem.classList.add(vez);
             document.getElementById(casa).src = "imagens/"+vez+".png";
-               
-            if(!verifica_ganhador()){
+            rodadas++;
+
+            if(rodadas == 9){
+
+              document.getElementById('feedbacks').innerHTML = "Empate!";
+              status = "finalizado";
+
+            } else if(!verifica_ganhador()){
 
                 if(vez == jogadores[0]){
                     vez = jogadores[1];
@@ -41,9 +50,9 @@ function novo_jogo(){
            document.getElementById(casa).classList.add(casa);
       }
     }
-    vez = jogadores[0];
-    document.getElementById('feedbacks').innerHTML = "Jogador: "+jogadores[0];
+    document.getElementById('feedbacks').innerHTML = "Jogador: "+vez;
     status = "jogando";
+    rodadas = 0;
 }
 
 function verifica_ganhador(){
